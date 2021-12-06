@@ -1,0 +1,8 @@
+= simple_form_for(@user, url: find_cust_path(@user)) do |f|
+
+	.form-inputs.d-grid.gap-2
+		= f.input :username, label: "Username"
+		= f.input :password
+
+	.form-actions.mt-4
+		= f.button :submit, 'LogIn', class: "btn btn-primary"
