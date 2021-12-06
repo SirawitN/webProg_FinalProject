@@ -1,0 +1,18 @@
+$(document).on('turbolinks:load', function() {
+	console.log("TEST jsFile")
+
+	$("#usersTab").DataTable({
+		columns: [
+			null, null, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, null, null, {orderable: false}, {orderable: false}, {orderable: false} ]
+	});
+
+	$("#storesTab").DataTable({columns: [
+		null, null, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, null, null, {orderable: false}, {orderable: false}, {orderable: false}
+	]});
+
+	$(".btn-group > .btn").click(function() {
+		$(this).addClass("active").siblings().removeClass("active");
+	});
+});
+
+

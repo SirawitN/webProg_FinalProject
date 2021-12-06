@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Password digest:
+  = @user.password_digest
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Name:
+  = @user.name
+%p
+  %b Address:
+  = @user.address
+%p
+  %b Subdistrict:
+  = @user.subDistrict
+%p
+  %b District:
+  = @user.district
+%p
+  %b Province:
+  = @user.province
+%p
+  %b Zipcode:
+  = @user.zipcode
+%p
+  %b Phonenumber:
+  = @user.phoneNumber
+%p
+  %b Gender:
+  = @user.gender
+%p
+  %b Birthdate:
+  = @user.birthdate
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

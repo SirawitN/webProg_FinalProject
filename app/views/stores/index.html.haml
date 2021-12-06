@@ -1,0 +1,37 @@
+%h1 Listing stores
+
+%table#storesTab.table.table-striped.table-hover
+  %thead
+    %tr.table-primary
+      %th Name
+      %th Email
+      %th Address
+      %th Subdistrict
+      %th District
+      %th Province
+      %th Zipcode
+      %th Totalratingscore
+      %th Ratecount
+      %th
+      %th
+      %th
+
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td= store.username
+        %td= store.email
+        %td= store.address
+        %td= store.subDistrict
+        %td= store.district
+        %td= store.province
+        %td= store.zipcode
+        %td= store.totalRatingScore
+        %td= store.rateCount
+        %td= button_to 'Show', store, method: :get, class: "btn btn-info"
+        %td= button_to 'Edit', edit_store_path(store), method: :get, class: "btn btn-info"
+        %td= button_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info"
+
+%br
+
+= link_to 'New Store', new_store_path

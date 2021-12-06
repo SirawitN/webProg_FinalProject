@@ -1,0 +1,39 @@
+%h1 Listing users
+
+%table#usersTab.table.table-striped.table-hover
+  %thead
+    %tr.table-primary
+      %th Name
+      %th Email
+      %th Address
+      %th Subdistrict
+      %th District
+      %th Province
+      %th Zipcode
+      %th PhoneNumber
+      %th Gender
+      %th Birthdate
+      %th
+      %th
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= user.address
+        %td= user.subDistrict
+        %td= user.district
+        %td= user.province
+        %td= user.zipcode
+        %td= user.phoneNumber
+        %td= user.gender
+        %td= user.birthdate
+        %td= button_to 'Show', user, method: :get, class: "btn btn-info"
+        %td= button_to 'Edit', edit_user_path(user), method: :get, class: "btn btn-info"
+        %td= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info"
+
+%br
+
+= link_to 'New User', new_user_path

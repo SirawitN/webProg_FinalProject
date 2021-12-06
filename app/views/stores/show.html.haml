@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Username:
+  = @store.username
+%p
+  %b Password:
+  = @store.password_digest
+%p
+  %b Email:
+  = @store.email
+%p
+  %b Address:
+  = @store.address
+%p
+  %b Subdistrict:
+  = @store.subDistrict
+%p
+  %b District:
+  = @store.district
+%p
+  %b Province:
+  = @store.province
+%p
+  %b Zipcode:
+  = @store.zipcode
+%p
+  %b Totalratingscore:
+  = @store.totalRatingScore
+%p
+  %b Ratecount:
+  = @store.rateCount
+
+= link_to 'Edit', edit_store_path(@store)
+\|
+= link_to 'Back', stores_path
