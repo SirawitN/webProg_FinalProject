@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Price:
+  = @product.price
+%p
+  %b Description:
+  = @product.description
+%p{style: "width: 400px; height: auto"}
+  %b Picture:
+  = image_tag(@product.picture, style: "width: 100%;")
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

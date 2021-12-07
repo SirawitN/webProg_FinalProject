@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-= simple_form_for(@user) do |f|
+= simple_form_for(@user, url: create_customer_path(@user)) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
@@ -20,3 +20,5 @@
 
   .form-actions.mt-4
     = f.button :submit, class: "btn btn-success"
+    = link_to "Cancel", index_url, class: "btn btn-secondary", role: "button", "aria-disabled": "true", style: "color: white;"
+

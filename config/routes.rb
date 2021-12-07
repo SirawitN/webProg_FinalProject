@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :products
   resources :users
+
   resources :stores
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -11,4 +13,9 @@ Rails.application.routes.draw do
   post '/main/store', to: 'main#findStore', as: 'find_store'
 
   get '/main/register', to: "main#register", as: "register"
+
+  get 'main/register/customer', to: redirect('/main/register')
+  get 'main/register/store', to: redirect('/main/register')
+  post 'main/register/customer', to: "users#create", as: "create_customer"
+  post 'main/register/store', to: 'stores#create', as: 'create_store' 
 end
