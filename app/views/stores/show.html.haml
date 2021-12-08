@@ -57,4 +57,13 @@
           - items.each do |p|
             = render 'productCard', product: p, tag: tag
 
+    .col-6
+      = "SHOPPING CART"
+      = @cart.total
+      -@cart.cart_items.each do |cart_item|
+        - product = Product.find(cart_item.product_id)
+        =render 'productCard', product: product
+
+      = button_to "Check out", orders_path(user_id: session[:user_id]), class: "btn btn-warning"
+
 = render 'productModal'

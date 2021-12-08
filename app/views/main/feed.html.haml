@@ -4,6 +4,8 @@
 = link_to "Logout", logout_url, class: "btn btn-danger", role: "button", "aria-disabled": "true"
 %br
 
+= link_to "Shopping cart", cart_path(@current_user.cart), class: "btn btn-info", role: "button", "aria-disabled": "true"
+%br
 
 - @most_used_tags.each do |t|
 	- if @products["#{t.name}"].size == 0

@@ -3,6 +3,7 @@ class StoresController < ApplicationController
 
   before_action :set_store, only: %i[ show edit update destroy ]
   before_action :set_current_user
+  before_action :set_cart, only: %i[ show ]
 
   # GET /stores or /stores.json
   def index

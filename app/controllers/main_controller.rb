@@ -1,6 +1,9 @@
 class MainController < ApplicationController
+	include MainConcern
 
 	before_action :set_user, only: %i[ feed ]
+	before_action :set_current_user
+	before_action :set_cart, only: %i[ feed ]
 
 	def logIn
 		puts "user_id = #{session[:user_id]}, store_id = #{session[:store_id]}"
@@ -24,6 +27,7 @@ class MainController < ApplicationController
 	def logOut
 	    session[:user_id] = nil
 	    session[:store_id] = nil
+	    session[:cart_id] = nil
 	    redirect_to index_path
   	end
 
