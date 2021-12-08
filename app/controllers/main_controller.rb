@@ -1,10 +1,16 @@
 class MainController < ApplicationController
 
+	before_action :set_user, only: %i[ feed ]
+
 	def logIn
 		puts "user_id = #{session[:user_id]}, store_id = #{session[:store_id]}"
-		session[:user_id] = nil
-		session[:store_id] = nil
-		@user = User.new
+		if session[:user_id]
+      		redirect_to feed_path(session[:user_id])
+    	elsif session[:store_id]
+    		redirect_to store_path(session[:store_id])
+    	else
+			@user = User.new
+		end
 	end
 
 	def cust_login
@@ -14,6 +20,12 @@ class MainController < ApplicationController
 	def store_login
 		@store = Store.new
 	end
+
+	def logOut
+	    session[:user_id] = nil
+	    session[:store_id] = nil
+	    redirect_to index_path
+  	end
 
 	def register
 		@user = User.new
@@ -25,7 +37,7 @@ class MainController < ApplicationController
 	    respond_to do |format|
 	      	if @user
 	            puts "Found"
-	            format.html {redirect_to users_url}
+	            format.html {redirect_to feed_path(@user)}
 	            session[:user_id] = @user.id
 	        else 
 	            puts "Not found"
@@ -42,7 +54,7 @@ class MainController < ApplicationController
 	    respond_to do |format|
 	      	if @store
 	            puts "Found"
-	            format.html {redirect_to stores_url}
+	            format.html { redirect_to store_path(@store) }
 	            session[:store_id] = @store.id
 	        else 
 	            puts "Not found"
@@ -52,5 +64,24 @@ class MainController < ApplicationController
 	    end
 	end
 
+	def feed
+		@most_used_tags = ActsAsTaggableOn::Tag.most_used(5)
+		@products = Hash.new
+		products = Array.new
+		@most_used_tags.each do |t|
+			products.clear
+			@user.stores.each do |store|
+				products.push(store.products.tagged_with(t))
+			end
+			products.push(Product.tagged_with(t))
+			@products["#{t.name}"] = products.flatten.to_set
+		end
+	end
+
+
+	private
+		def set_user
+			@user = User.find(params[:id])
+		end
 
 end

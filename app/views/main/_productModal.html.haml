@@ -1,0 +1,18 @@
+.productModal.modal.fade{"data-bs-backdrop": "static",  "data-bs-keyboard": false, tabindex: "-1", "aria-labelledby": "staticBackdropLabel", "aria-hidden": true}
+	.modal-dialog.modal-dialog-scrollable.modal-dialog-centered
+		.modal-content
+			.modal-header
+				.container
+					.row
+						.col-11#modal_store_name
+						.col-1
+							%button.btn-close{"data-bs-dismiss": "modal", "aria-label": "Close"}
+					.row
+						%h6.text-muted#modal_item_name
+			.modal-body
+				/ .mx-auto= image_tag p.banner rescue "none"
+				/ .mx-auto#modal_itempicture
+				%p.text-break#modal_item_desc
+			.modal-footer
+				.container
+					.row#modal_store_link

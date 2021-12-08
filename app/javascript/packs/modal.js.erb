@@ -1,0 +1,26 @@
+$(document).on('turbolinks:load', function() { 
+  $(".productDetails").click(function() {
+    const id = $(this).attr("p-id")
+    const name = $(this).attr("p-name")
+    const store_name = $(this).attr("p-store-name")
+    const store_id = $(this).attr("p-store-id")
+    const descp = $(this).attr("p-desc")
+
+    $("#modal_store_name").empty();
+    $("#modal_store_name").append(`<h5>${store_name}</h5>`);
+
+    // $("#modal_item_name").empty();
+    $("#modal_item_name").text(`${name}`);
+
+    // $("#modal_item_desc").empty();
+    $("#modal_item_desc").text(`${descp}`);
+
+    $("#modal_store_link").empty();
+    $("#modal_store_link").append(`<a class="btn btn-primary" href="/stores/${store_id}">SHOP</a>`);
+
+    $(".productModal").show();
+
+
+  });
+});
+  

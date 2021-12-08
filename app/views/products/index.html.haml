@@ -1,12 +1,14 @@
 %h1 Listing products
 
-%table
+%table#productsTab.table.table-striped.table-hover
   %thead
-    %tr
+    %tr.table-primary
       %th Name
       %th Price
       %th Description
+      %th Tags
       %th Picture
+      %th Store
       %th
       %th
       %th
@@ -17,11 +19,10 @@
         %td= product.name
         %td= product.price
         %td= product.description
-        %td= image_tag(product.thumb)
-        %td= link_to 'Show', product
-        %td= link_to 'Edit', edit_product_path(product)
-        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= raw product.tag_list.map{|t| link_to t, tag_path(t) }.join(', ')
+        %td= product.picture
+        %td= product.store.username
+        %td= button_to 'Show', product, method: :get, class: "btn btn-info"
+        %td= button_to 'Edit', edit_product_path(product), method: :get, class: "btn btn-info"
+        %td= button_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info"
 
-%br
-
-= link_to 'New Product', new_product_path

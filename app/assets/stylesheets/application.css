@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    max-height: 80vh;
+    max-weight:  50vh;
+    overflow-y: auto;
+}

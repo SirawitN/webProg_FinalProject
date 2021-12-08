@@ -30,7 +30,9 @@ gem 'haml'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'mysql2'
-gem 'activesupport'
+#gem 'activesupport'
+gem 'acts-as-taggable-on'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

@@ -1,0 +1,18 @@
+%h1 Customer's Feed
+
+%label.me-3= @user.username
+= link_to "Logout", logout_url, class: "btn btn-danger", role: "button", "aria-disabled": "true"
+%br
+
+
+- @most_used_tags.each do |t|
+	- if @products["#{t.name}"].size == 0
+		- next
+	.row.mb-2{id: "#{t.name}Row"}
+		%h5= t.name
+		- @products["#{t.name}"].each do |p|
+			= render 'productCard', product: p, tag: t.name
+
+= render 'productModal'  #<<---------------------- 
+
+

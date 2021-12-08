@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
+	has_many :follows
+	has_many :stores, through: :follows
 
 	validates :username, uniqueness: true, presence: true
 	validates :password, length: {minimum: 6}

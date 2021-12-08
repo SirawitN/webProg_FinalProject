@@ -10,6 +10,8 @@ $(document).on('turbolinks:load', function() {
 		null, null, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, {orderable: false}, null, null, {orderable: false}, {orderable: false}, {orderable: false}
 	]});
 
+	$("#productsTab").DataTable({columns: [null, null, {orderable: false}, {orderable: false}, {visible: false}, null, {orderable: false}, {orderable: false}, {orderable: false}]});
+
 	$(".btn-group > .btn").click(function() {
 		$(this).addClass("active").siblings().removeClass("active");
 	});

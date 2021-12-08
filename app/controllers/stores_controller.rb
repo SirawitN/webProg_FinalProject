@@ -1,5 +1,8 @@
 class StoresController < ApplicationController
+  include MainConcern
+
   before_action :set_store, only: %i[ show edit update destroy ]
+  before_action :set_current_user
 
   # GET /stores or /stores.json
   def index

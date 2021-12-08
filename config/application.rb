@@ -20,5 +20,9 @@ module FinalProg
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.time_zone = "Bangkok"
+
+    #acts-as-taggable-on configuration
+    ActsAsTaggableOn.remove_unused_tags = true
+    ActsAsTaggableOn.force_lowercase = true
   end
 end

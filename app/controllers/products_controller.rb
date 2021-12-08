@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    if params[:tag]
+      @products = Product.tagged_with(params[:tag])
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1 or /products/1.json
@@ -13,6 +17,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @product.store_id = session[:store_id]
   end
 
   # GET /products/1/edit
@@ -22,6 +27,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
+    @product.store_id = session[:store_id]
 
     respond_to do |format|
       if @product.save
@@ -64,6 +70,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :price, :description, :picture)
+      params.require(:product).permit(:name, :price, :description, :picture, :tag_list)
     end
 end

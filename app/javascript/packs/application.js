@@ -8,11 +8,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-
-require('packs/main.js.erb')
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+require('packs/main.js.erb')
+require('packs/modal.js.erb')
 
 
