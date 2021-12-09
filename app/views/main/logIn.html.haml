@@ -2,8 +2,6 @@
 
 
 - flash.each do |type, msg|
-	- if msg != "Log in failed, wrong email or password !!"
-		- next
 	%div.alert.alert-danger.alert-dismissible.fade.show
 		%p "#{msg}"
 		%button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}

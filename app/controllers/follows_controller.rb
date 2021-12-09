@@ -1,6 +1,7 @@
 class FollowsController < ApplicationController
 	include MainConcern
 
+	before_action :is_logged_in_user
 	before_action :set_current_user
 	before_action :set_store
 

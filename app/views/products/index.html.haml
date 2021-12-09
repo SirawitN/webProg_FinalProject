@@ -5,7 +5,7 @@
     %tr.table-primary
       %th Name
       %th Price
-      %th Description
+      %th Quantity
       %th Tags
       %th Picture
       %th Store
@@ -18,7 +18,7 @@
       %tr
         %td= product.name
         %td= product.price
-        %td= product.description
+        %td= product.quantity
         %td= raw product.tag_list.map{|t| link_to t, tag_path(t) }.join(', ')
         %td= product.picture
         %td= product.store.username

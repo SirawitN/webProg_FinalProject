@@ -1,0 +1,10 @@
+.card.mb-3
+  .card-header
+    = "Order ##{idx}"
+  .card-body
+    %blockquote.blockquote.mb-0
+      %p= "Purchased date : #{order.created_at}"
+      %p= "Total amount : #{order.total}"
+      %footer.blockquote-footer
+        = link_to 'Details', order_path(order, idx: idx), style: "text-decoration: none;"
+          

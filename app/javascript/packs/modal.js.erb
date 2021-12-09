@@ -1,26 +1,26 @@
 $(document).on('turbolinks:load', function() { 
   $(".productDetails").click(function() {
-    const id = $(this).attr("p-id")
-    const name = $(this).attr("p-name")
-    const store_name = $(this).attr("p-store-name")
-    const store_id = $(this).attr("p-store-id")
-    const descp = $(this).attr("p-desc")
+    const id = $(this).attr("data-p-id")
+    const name = $(this).attr("data-p-name")
+    const store_name = $(this).attr("data-p-store-name")
+    const store_id = $(this).attr("data-p-store-id")
+    const stock = $(this).attr('data-p-quan')
+    const descp = $(this).attr("data-p-desc")
 
     $("#modal_store_name").empty();
     $("#modal_store_name").append(`<h5>${store_name}</h5>`);
 
-    // $("#modal_item_name").empty();
-    $("#modal_item_name").text(`${name}`);
+    $("#modal_item_name").text(`${name}  (stock : ${stock})`);
 
-    // $("#modal_item_desc").empty();
     $("#modal_item_desc").text(`${descp}`);
 
     $("#modal_store_link").empty();
     $("#modal_store_link").append(`<a class="btn btn-primary" href="/stores/${store_id}">SHOP</a>`);
 
+    $('#cart_item_product_id').attr('value', `${id}`)
+    $('#cart_item_quantity').attr('max', `${stock}`)
+
     $(".productModal").show();
-
-
   });
 });
   

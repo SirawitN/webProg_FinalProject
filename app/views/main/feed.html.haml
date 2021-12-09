@@ -1,10 +1,16 @@
 %h1 Customer's Feed
 
+- flash.each do |type, msg|
+	%div.alert.alert-primary.alert-dismissible.fade.show
+		%p "#{msg}"
+		%button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+
 %label.me-3= @user.username
 = link_to "Logout", logout_url, class: "btn btn-danger", role: "button", "aria-disabled": "true"
 %br
 
 = link_to "Shopping cart", cart_path(@current_user.cart), class: "btn btn-info", role: "button", "aria-disabled": "true"
+= link_to "My orders", orders_path, class: "btn btn-warning", role: "button", "aria-disabled": "true"
 %br
 
 - @most_used_tags.each do |t|

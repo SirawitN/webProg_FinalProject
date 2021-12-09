@@ -1,0 +1,21 @@
+- p = product
+%div{class: session[:store_id] ? "col-12 col-md-6 col-lg-4 mb-3" : " col-12 col-md-6 col-lg-6 mb-3" ,id: "#{tag}-#{p.store.username}-#{p.name}"}
+	.card
+		.row.g-0
+			.col-5
+				.card-img-fluid.rounded-start= image_tag p.thumb rescue 'No images to display !!'
+			.col-7
+				.card-body
+					%h5.card-title= p.store.username
+					%h6.card-subtitle.mb-2.text-muted= p.name
+					%p.card-text
+					.card-text= "#{p.price} Baht."
+					/ .card-text= p.description
+					%small.text-muted= p.created_at
+
+		- if session[:store_id]
+			= link_to "Edit information", edit_product_path(p), class: "btn btn-outline-primary active", role: "button", "aria-disabled": "true" 
+		- else
+			.productDetails.btn.btn-primary{"data-bs-target": ".productModal", "data-bs-toggle": "modal", type: "button", "data-p-id": p.id, "data-p-name": p.name, "data-p-store-name": p.store.username, "data-p-store-id": p.store.id, "data-p-quan": p.quantity, "data-p-desc": p.description } Buy this product
+
+

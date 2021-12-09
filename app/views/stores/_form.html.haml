@@ -16,4 +16,4 @@
 
   .form-actions.mt-4
     = f.button :submit, class: "btn btn-success"
-    = link_to "Cancel", index_url, class: "btn btn-secondary", role: "button", "aria-disabled": "true", style: "color: white;"
+    = link_to "Cancel", session[:store_id] ? store_path(session[:store_id]) : index_url, class: "btn btn-secondary", role: "button", "aria-disabled": "true", style: "color: white;"

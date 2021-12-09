@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
   include MainConcern
 
+  before_action :is_logged_in_store, except: %i[ show new ]
   before_action :set_store, only: %i[ show edit update destroy ]
   before_action :set_current_user
   before_action :set_cart, only: %i[ show ]
@@ -12,6 +13,7 @@ class StoresController < ApplicationController
 
   # GET /stores/1 or /stores/1.json
   def show
+    @cart_item = CartItem.new
   end
 
   # GET /stores/new

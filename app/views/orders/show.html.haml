@@ -1,9 +1,14 @@
 %p#notice= notice
 
-%p
-  %b User:
-  = @order.user
 
-= link_to 'Edit', edit_order_path(@order)
-\|
-= link_to 'Back', orders_path
+%h1= "Order ##{@idx}"
+
+%h3= "Products"
+
+- @order.order_items.each do |order_item|
+  - product = Product.find(order_item.product_id) rescue nil
+  - if product
+    = render 'productCard_order', product: product, unit_sold_price: order_item.unit_sold_price, quantity: order_item.quantity
+
+
+= link_to 'Back', orders_path, class: "btn btn-primary"

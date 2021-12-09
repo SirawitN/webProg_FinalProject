@@ -1,10 +1,17 @@
 module MainConcern
 	extend ActiveSupport::Concern
 
-	def is_logged_in
+	def is_logged_in_user
     if !session[:user_id]  #check nil
       flash[:alert] = "Please login before making any action !!!"
-      redirect_to main_url
+      redirect_to index_url
+    end
+  end
+
+  def is_logged_in_store
+    if !session[:store_id]  #check nil
+      flash[:alert] = session[:user_id]? "You can't perform this action" : "Please login before making any action !!!"
+      redirect_to index_url
     end
   end
 
@@ -26,7 +33,6 @@ module MainConcern
       set_current_user
       if @current_user.cart
         @cart = @current_user.cart
-        session[:cart_id] = @cart.id
       else 
         @cart = Cart.create(user_id: @current_user.id)
         @current_user.cart = @cart

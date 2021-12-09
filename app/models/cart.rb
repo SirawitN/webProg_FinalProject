@@ -4,13 +4,13 @@ class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
 
-  def add_product(product)
+  def add_product(product, quantity)
     current_item = cart_items.find_by(product_id: product.id)
 
     if current_item
-        current_item.increment(:quantity)
+        current_item[:quantity] += quantity.to_i
     else
-        current_item = cart_items.build(product_id: product.id)
+        current_item = cart_items.build(product_id: product.id, quantity: quantity.to_i)
     end
     return current_item
   end

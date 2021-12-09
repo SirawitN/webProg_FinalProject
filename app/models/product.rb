@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   has_many :carts, through: :cart_items
 
   validates :name, presence: true
+  validates :quantity, numericality: { greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 0.00 }
 
   acts_as_taggable_on :tags
@@ -22,6 +23,14 @@ class Product < ApplicationRecord
       return
     end
     return self.picture.variant(resize: '249x268.8').processed
+  end
+
+  def get_quant
+    return quantity
+  end
+
+  def set_quant(quant)
+    self.quantity += quant
   end
 
 end

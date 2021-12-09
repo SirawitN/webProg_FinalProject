@@ -1,4 +1,7 @@
-%p#notice= notice
+- flash.each do |type, msg|
+  %div.alert.alert-primary.alert-dismissible.fade.show
+    %p "#{msg}"
+    %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
 
 .container
   .row
@@ -36,8 +39,7 @@
       - if session[:store_id]
         = button_to 'Add new products', new_product_path, method: :get, class: "btn btn-warning"
 
-        = link_to 'Edit', edit_store_path(@store)
-        = link_to 'Back', stores_path
+        = link_to 'Edit', edit_store_path(@store), class: "btn btn-primary"
 
       - if !!session[:store_id]
         = button_to "Logout", logout_url, method: :get, class: "btn btn-danger"
@@ -46,24 +48,36 @@
       - else
         = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-info"
 
-  .row
-    .col-6
-      = "ITEM LIST"
-      - @store.show_products.each do |tag, items|
-        - if items.size == 0
-          - next
-        .row.mb-2{id: "#{tag}Row"}
-          %h5= tag
-          - items.each do |p|
-            = render 'productCard', product: p, tag: tag
+  - if session[:user_id]
+    .row
+      .col-6
+        = "ITEM LIST"
+        - @store.show_products.each do |tag, items|
+          - if items.size == 0
+            - next
+          .row.mb-2{id: "#{tag}Row"}
+            %h5= tag
+            - items.each do |p|
+              = render 'productCard_store', product: p, tag: tag
 
-    .col-6
-      = "SHOPPING CART"
-      = @cart.total
-      -@cart.cart_items.each do |cart_item|
-        - product = Product.find(cart_item.product_id)
-        =render 'productCard', product: product
+      .col-6
+        %label= "SHOPPING CART"
+        %label= @cart.total
+        - if @cart.cart_items.any?
+          = button_to "Check out", orders_path(user_id: session[:user_id]), class: "btn btn-warning"
+        -@cart.cart_items.each do |cart_item|
+          - product = Product.find(cart_item.product_id)
+          =render 'productCard_cart', product: product, cart_item: cart_item
 
-      = button_to "Check out", orders_path(user_id: session[:user_id]), class: "btn btn-warning"
-
-= render 'productModal'
+  - elsif session[:store_id]
+    .row
+      .col-12
+        = "ITEM LIST"
+        - @store.show_products.each do |tag, items|
+          - if items.size == 0
+            - next
+          .row.mb-2{id: "#{tag}Row"}
+            %h5= tag
+            - items.each do |p|
+              = render 'productCard_store', product: p, tag: tag
+= render 'productModal_customer'

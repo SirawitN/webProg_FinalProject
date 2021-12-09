@@ -10,9 +10,8 @@
 					.row
 						%h6.text-muted#modal_item_name
 			.modal-body
-				/ .mx-auto= image_tag p.banner rescue "none"
-				/ .mx-auto#modal_itempicture
 				%p.text-break#modal_item_desc
 			.modal-footer
 				.container
-					.row#modal_store_link
+					.row#modal_cart_item
+						= render 'cart_items/form'

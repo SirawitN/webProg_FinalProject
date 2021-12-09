@@ -3,10 +3,10 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.association :cart
-    = f.association :product
-    = f.input :quantity
+  .form-inputs.mb-4
+    = f.input :product_id, as: 'hidden', id: 'cart_item_product_id'
+    = f.input :quantity, input_html: {value: 1, min: 1, max: 99}
 
   .form-actions
-    = f.button :submit
+    .row
+      = f.button :submit, 'Confirm', class: 'btn btn-primary'
