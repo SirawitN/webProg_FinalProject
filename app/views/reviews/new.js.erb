@@ -1,0 +1,16 @@
+
+$('.review-btn').click(function() {
+
+
+	const user_id = $(this).attr('data-user-id')
+	const store_id = $(this).attr('data-store-id')
+
+
+	$('#reviewForm').html('<%= j render "form"  %>')
+	$('#review_user_id').val(`${user_id}`)
+	$('#review_store_id').val(`${store_id}`)
+})
+
+
+
+

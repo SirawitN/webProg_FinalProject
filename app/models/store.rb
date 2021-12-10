@@ -3,6 +3,7 @@ class Store < ApplicationRecord
 	has_many :products, dependent: :destroy
 	has_many :follows
 	has_many :users, through: :follows
+	has_many :reviews
 
 	validates :username, uniqueness: true, presence: true
 	validates :password, length: {minimum: 6}
@@ -13,9 +14,6 @@ class Store < ApplicationRecord
 	validates :province, presence: true
 	validates :zipcode, presence: true, numericality: true
 
-	attribute :totalRatingScore, :integer, default: 0
-	attribute :rateCount, :integer, default: 0
-
 
 	def show_products
 		products = Hash.new
@@ -24,5 +22,10 @@ class Store < ApplicationRecord
 			products["#{t}"] = self.products.tagged_with(t)
 		end
 		return products
+	end
+
+	def set_rating
+		self.rating = self.reviews.average(:score).to_f.round(1)
+		self.save
 	end
 end

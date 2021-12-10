@@ -15,6 +15,8 @@
 
 		- if session[:store_id]
 			= link_to "Edit information", edit_product_path(p), class: "btn btn-outline-primary active", role: "button", "aria-disabled": "true" 
+		- elsif p.quantity == 0
+			= link_to "Out of stock", '', class: "btn btn-secondary", role: "button", "aria-disabled": "true", readonly: true
 		- else
 			.productDetails.btn.btn-primary{"data-bs-target": ".productModal", "data-bs-toggle": "modal", type: "button", "data-p-id": p.id, "data-p-name": p.name, "data-p-store-name": p.store.username, "data-p-store-id": p.store.id, "data-p-quan": p.quantity, "data-p-desc": p.description } Buy this product
 

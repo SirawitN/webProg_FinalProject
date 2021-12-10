@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     if @cart.cart_items.any? && @cart.save
-      @order = Order.create(user_id: params[:user_id])
+      @order = Order.create(user_id: params[:user_id], store_id: params[:store_id])
       @order[:total] = @cart.total
 
       @cart.cart_items.each do |cart_item|
@@ -87,6 +87,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id)
+      params.require(:order).permit(:user_id, :store_id)
     end
 end

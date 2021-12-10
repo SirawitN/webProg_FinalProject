@@ -12,7 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
 require('packs/main.js.erb')
 require('packs/modal.js.erb')
 

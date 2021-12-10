@@ -13,6 +13,8 @@ class StoresController < ApplicationController
 
   # GET /stores/1 or /stores/1.json
   def show
+    @store.set_rating
+    @review = Review.new
     @cart_item = CartItem.new
   end
 

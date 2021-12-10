@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	has_many :orders, dependent: :destroy
 	has_many :follows
 	has_many :stores, through: :follows
+	has_many :reviews, dependent: :destroy
 
 	validates :username, uniqueness: true, presence: true
 	validates :password, length: {minimum: 6}

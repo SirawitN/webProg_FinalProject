@@ -30,23 +30,24 @@
         %b Zipcode:
         = @store.zipcode
       %p
-        %b Totalratingscore:
-        = @store.totalRatingScore
-      %p
-        %b Ratecount:
-        = @store.rateCount
+        %b Rating :
+        = @store.rating
     .col-4
-      - if session[:store_id]
-        = button_to 'Add new products', new_product_path, method: :get, class: "btn btn-warning"
+      .row.mb-3
+        = button_to "Review", new_review_path(@review), class: "btn btn-primary review-btn", remote: true, method: :get, "data-bs-target": '.reviewModal', 'data-bs-toggle': 'modal', 'data-user-id': session[:user_id], 'data-store-id': @store.id
 
-        = link_to 'Edit', edit_store_path(@store), class: "btn btn-primary"
+      .row
+        - if session[:store_id]
+          = button_to 'Add new products', new_product_path, method: :get, class: "btn btn-warning"
 
-      - if !!session[:store_id]
-        = button_to "Logout", logout_url, method: :get, class: "btn btn-danger"
-      - elsif @current_user.stores.include?(@store)
-        = button_to "Unfollow", unfollow_path(@store), method: :delete, class: "btn btn-info"
-      - else
-        = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-info"
+          = button_to 'Edit', edit_store_path(@store), class: "btn btn-primary", method: :get
+
+        - if !!session[:store_id]
+          = button_to "Logout", logout_url, method: :get, class: "btn btn-danger"
+        - elsif @current_user.stores.include?(@store)
+          = button_to "Unfollow", unfollow_path(@store), method: :delete, class: "btn btn-info"
+        - else
+          = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-info"
 
   - if session[:user_id]
     .row
@@ -64,7 +65,7 @@
         %label= "SHOPPING CART"
         %label= @cart.total
         - if @cart.cart_items.any?
-          = button_to "Check out", orders_path(user_id: session[:user_id]), class: "btn btn-warning"
+          = button_to "Check out", orders_path(user_id: session[:user_id], store_id: session[:bought_store_id]), class: "btn btn-warning"
         -@cart.cart_items.each do |cart_item|
           - product = Product.find(cart_item.product_id)
           =render 'productCard_cart', product: product, cart_item: cart_item
@@ -81,3 +82,4 @@
             - items.each do |p|
               = render 'productCard_store', product: p, tag: tag
 = render 'productModal_customer'
+= render 'reviewModal'

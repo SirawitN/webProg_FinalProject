@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_082234) do
+ActiveRecord::Schema.define(version: 2021_12_10_032056) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_12_09_082234) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "total"
+    t.integer "store_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -95,6 +96,17 @@ ActiveRecord::Schema.define(version: 2021_12_09_082234) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
+  create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "store_id", null: false
+    t.integer "score"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_reviews_on_store_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -103,11 +115,10 @@ ActiveRecord::Schema.define(version: 2021_12_09_082234) do
     t.string "district"
     t.string "province"
     t.string "zipcode"
-    t.integer "totalRatingScore"
-    t.integer "rateCount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.float "rating", default: 0.0
   end
 
   create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -165,5 +176,7 @@ ActiveRecord::Schema.define(version: 2021_12_09_082234) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "stores"
+  add_foreign_key "reviews", "stores"
+  add_foreign_key "reviews", "users"
   add_foreign_key "taggings", "tags"
 end
