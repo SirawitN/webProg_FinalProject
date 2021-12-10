@@ -4,21 +4,50 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs.d-grid.gap-2
-    = f.input :username
-    = f.input :password, label: 'Password : minimum length is 6'
-    = f.input :password_confirmation
-    = f.input :email
-    = f.input :name
-    = f.input :address
-    = f.input :subDistrict
-    = f.input :district
-    = f.input :province
-    = f.input :zipcode
-    = f.input :phoneNumber, placeholder: 'xxx-xxx-xxxx'
-    = f.input :gender, priority: ["Male"], collection: ["Male", "Female", "Others"]
-    = f.input :birthdate, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:day, :month, :year]
+    .form-label.lead Username
+    = f.input :username, label: false, class: 'form-control'
+    .row.mb-2
+      .col-lg-6.col-sm-12
+        .form-label.lead Password : minimum is 6 characters
+        = f.input :password, label: false, class: 'form-control'
+      .col-lg-6.col-sm-12
+        .form-label.lead Password confirmation
+        = f.input :password_confirmation, label: false, class: 'form-control'
+    .row.mb-2
+      .col-lg-6.col-sm-12
+        .form-label.lead Email
+        = f.input :email, label: false, class: 'form-control'
+      .col-lg-6.col-sm-12
+        .form-label.lead Name
+        = f.input :name, label: false, class: 'form-control'
+    .row.mb-2
+      .col-lg-6.col-sm-12
+        .form-label.lead Address
+        = f.input :address, label: false, class: 'form-control'
+      .col-lg-6.col-sm-12
+        .form-label.lead Subdistrict
+        = f.input :subDistrict, label: false, class: 'form-control'
+    .row.mb-2
+      .col-lg-4.col-md-12
+        .form-label.lead District
+        = f.input :district, label: false, class: 'form-control'
+      .col-lg-4.col-md-12
+        .form-label.lead Province
+        = f.input :province, label: false, class: 'form-control'
+      .col-lg-4.col-md-12
+        .form-label.lead Zipcode
+        = f.input :zipcode, label: false, class: 'form-control'
+    .row.mb-2
+      .col-lg-6.col-sm-12
+        .form-label.lead Phone number
+        = f.input :phoneNumber, placeholder: 'xxx-xxx-xxxx', label: false, class: 'form-control'
+      .col-lg-6.col-sm-12
+        .form-label.lead Gender
+        = f.input :gender, priority: ["Male"], collection: ["Male", "Female", "Others"], label: false, class: 'form-control'
+    .form-label.lead Birthdate
+    = f.input :birthdate, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:day, :month, :year], label: false, class: 'form-control'
 
   .form-actions.mt-4
-    = f.button :submit, class: "btn btn-success"
-    = link_to "Cancel", index_url, class: "btn btn-secondary", role: "button", "aria-disabled": "true", style: "color: white;"
+    = f.button :submit, class: "btn btn-outline-orange_2 me-2"
+    = link_to "Cancel", index_url, class: "btn btn-outline-secondary", role: "button", "aria-disabled": "true"
 

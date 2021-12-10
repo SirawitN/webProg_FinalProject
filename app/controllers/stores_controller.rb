@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   include MainConcern
 
-  before_action :is_logged_in_store, except: %i[ show new ]
+  before_action :is_logged_in_store, except: %i[ show new create ]
   before_action :set_store, only: %i[ show edit update destroy ]
   before_action :set_current_user
   before_action :set_cart, only: %i[ show ]
@@ -33,7 +33,7 @@ class StoresController < ApplicationController
 
     respond_to do |format|
       if @store.save
-        format.html { redirect_to @store, notice: "Store was successfully created." }
+        format.html { redirect_to index_url, notice: "Account was successfully created." }
         format.json { render :show, status: :created, location: @store }
       else
         format.html { render 'main/register', status: :unprocessable_entity }

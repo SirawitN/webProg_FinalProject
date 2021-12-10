@@ -1,21 +1,36 @@
-%h1.mt-3 LogIn Page
+.navbar.navbar-expand-md.navbar-light.mx-5
+	.container-fluid
+		%a.navbar-brand{href: index_url}
+			.display-4.fw-bold.text-orange= 'Shopee'
+		%button.navbar-toggler{type: 'button', 'data-bs-toggle': 'collapse', 'data-bs-target': '#navbarNav', 'aria-controls': "navbarNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation"}
+			%span.navbar-toggler-icon
+
+		#navbarNav.collapse.navbar-collapse.justify-content-end.align-center
+			%ul.navbar-nav
+				%li.nav-item.align-center.d-none.d-md-inline
+					%a.nav_link{href: register_path, class: 'btn btn-orange_2 btn-lg rounded-pill', style: 'color: white;'} Register
+				%li.nav-item.d-md-none.mt-3
+					= link_to 'Register', register_path, style: 'text-decoration: none; color: grey;'
 
 
-- flash.each do |type, msg|
-	%div.alert.alert-danger.alert-dismissible.fade.show
-		%p "#{msg}"
-		%button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
 
 
-%div.mt-4
-	%label.me-3 Please select an account type : 
-	.btn-group.mb-2
-		= link_to "Customer", cust_login_path, remote: true, for: "radio1", class: "btn btn-outline-primary active", role: "button", "aria-disabled": "true"
 
-		= link_to "Store", store_login_path, remote: true, for: "radio2", class: "btn btn-outline-primary", role: "button", "aria-disabled": "true"
+.container.lg
 
-#loginForm.mb-3
-	= render 'customerLogin'
- 
+	- flash.each do |type, msg|
+		%div.alert.alert-dismissible.fade.show{class: type=='alert' ? 'alert-danger' : 'alert-info' }
+			%p.lead.align-middle.fw-light "#{msg}"
+			%button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
 
-= link_to 'Register', register_path
+	%div.mt-4
+	
+		%label.display-6.text-muted Select an account type : 
+		.btn-group.rounded-3.ms-3
+			= link_to "Customer", cust_login_path, remote: true, for: "radio1", class: "btn btn-outline-orange_2 btn-lg active", role: "button", "aria-disabled": "true"
+
+			= link_to "Store", store_login_path, remote: true, for: "radio2", class: "btn btn-outline-orange_2 btn-lg ", role: "button", "aria-disabled": "true"
+
+	#loginForm.my-5
+		= render 'customerLogin'
+	 

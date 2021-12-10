@@ -1,19 +1,19 @@
-%h1.mt-3 Registration
 
-%div.mt-4
-	%label.me-3 Please select an account type : 
-	
-	.btn-group.mb-2
-		= link_to "Customer", new_user_path, remote: true, for: "radio1", class: "btn btn-outline-primary", role: "button", "aria-disabled": "true"
+.container-fluid.mx-5
+	%label.display-5.text-orange.fw-bold.mt-4 Shopee Registration
 
-		= link_to "Store", new_store_path, remote: true, for: "radio2", class: "btn btn-outline-primary", role: "button", "aria-disabled": "true"
+.container-lg.my-4
+	%div.mt-4
+		%label.display-6.text-muted.me-3 Please select an account type : 
+		
+		.btn-group.mb-2
+			= link_to "Customer", new_user_path, remote: true, for: "radio1", class: "btn btn-outline-orange_2 btn-lg", role: "button", "aria-disabled": "true"
+
+			= link_to "Store", new_store_path, remote: true, for: "radio2", class: "btn btn-outline-orange_2 btn-lg", role: "button", "aria-disabled": "true"
 
 
-
-
-
-#registrationForm.mb-3
-	- if(@user && @user.errors.any?)
-		= render 'users/form'
-	- elsif(@store && @store.errors.any?)
-		= render 'stores/form'
+	#registrationForm
+		- if(@user && @user.errors.any?)
+			= render 'users/form'
+		- elsif(@store && @store.errors.any?)
+			= render 'stores/form'

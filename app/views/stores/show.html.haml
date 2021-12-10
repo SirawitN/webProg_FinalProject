@@ -44,7 +44,7 @@
 
         - if !!session[:store_id]
           = button_to "Logout", logout_url, method: :get, class: "btn btn-danger"
-        - elsif @current_user.stores.include?(@store)
+        - elsif !!session[:user_id] && @current_user.stores.include?(@store)
           = button_to "Unfollow", unfollow_path(@store), method: :delete, class: "btn btn-info"
         - else
           = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-info"

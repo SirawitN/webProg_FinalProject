@@ -1,8 +1,15 @@
 = simple_form_for(@user, url: find_cust_path(@user)) do |f|
 
 	.form-inputs.d-grid.gap-2
-		= f.input :username, label: "Username"
-		= f.input :password
+		.row.d-flex.justify-content-center
+			.col-4
+				.form-label.lead= "Username"
+				= f.input :username, label: false, class: 'form-control'
+		.row.d-flex.justify-content-center
+			.col-4
+				.form-label.lead= "Password"
+				= f.input :password, label: false, class: 'form-control'
 
 	.form-actions.mt-4
-		= f.button :submit, 'LogIn', class: "btn btn-primary"
+		.d-flex.justify-content-center
+			= f.button :submit, 'Login as a customer', class: "btn btn-orange_2 btn-lg rounded-pill", style: 'color: white;'

@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -15,4 +16,5 @@ ActiveStorage.start()
 require('packs/main.js.erb')
 require('packs/modal.js.erb')
 
-
+import 'bootstrap'
+import '../stylesheets/application'

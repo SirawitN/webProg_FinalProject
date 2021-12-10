@@ -45,7 +45,7 @@ class MainController < ApplicationController
 	            session[:user_id] = @user.id
 	        else 
 	            puts "Not found"
-	            flash.alert = "Log in failed, wrong email or password !!"
+	            flash.alert = "Log in failed, wrong username or password !!"
 	            format.html { redirect_to index_path}    
 	        end
 	    end
