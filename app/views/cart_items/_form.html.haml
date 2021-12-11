@@ -5,8 +5,10 @@
 
   .form-inputs.mb-4
     = f.input :product_id, as: 'hidden', id: 'cart_item_product_id'
-    = f.input :quantity, input_html: {value: 1, min: 1, max: 99}
+
+    .form-label.lead Quantity
+    = f.input :quantity, input_html: {value: 1, min: 1, max: 99}, label: false, class: 'form-control'
 
   .form-actions
     .row
-      = f.button :submit, 'Confirm', class: 'btn btn-primary'
+      = f.button :submit, 'Confirm', class: 'btn btn-orange_2 text-white'

@@ -1,85 +1,91 @@
-- flash.each do |type, msg|
-  %div.alert.alert-primary.alert-dismissible.fade.show
-    %p "#{msg}"
-    %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+= render 'main/inappNav'
 
-.container
+.container-lg.mt-4
+  = render 'main/alert'
+
+.container-lg.bg-light.p-3
   .row
-    .col-4
-      %p
-        %b Username:
-        = @store.username
-      %p
-        %b Email:
-        = @store.email
-      %p
-        %b Address:
-        = @store.address
-      %p
-        %b Subdistrict:
-        = @store.subDistrict
-      
-    .col-4
-      %p
-        %b District:
-        = @store.district
-      %p
-        %b Province:
-        = @store.province
-      %p
-        %b Zipcode:
-        = @store.zipcode
-      %p
-        %b Rating :
-        = @store.rating
-    .col-4
-      .row.mb-3
-        = button_to "Review", new_review_path(@review), class: "btn btn-primary review-btn", remote: true, method: :get, "data-bs-target": '.reviewModal', 'data-bs-toggle': 'modal', 'data-user-id': session[:user_id], 'data-store-id': @store.id
+    .col-lg-8.col-sm-12
+      .display-6= @store.username
+      .lead.text-muted= @store.email
 
-      .row
-        - if session[:store_id]
-          = button_to 'Add new products', new_product_path, method: :get, class: "btn btn-warning"
+      .row.mt-3
+        .col-lg-6.col-sm-12.mb-3
+          .lead.fs-5.mb-2
+            %b Address:
+            = @store.address
+          .lead.fs-5.mb-2
+            %b Subdistrict:
+            = @store.subDistrict
+          .lead.fs-5.mb-4
+            %b District:
+            = @store.district
 
-          = button_to 'Edit', edit_store_path(@store), class: "btn btn-primary", method: :get
+          -if session[:user_id]
+            = button_to "Review", new_review_path(@review), class: "btn btn-orange_2 btn-lg rounded-pill text-white me-3 review-btn", remote: true, method: :get, "data-bs-target": '.reviewModal', 'data-bs-toggle': 'modal', 'data-user-id': session[:user_id], 'data-store-id': @store.id
 
-        - if !!session[:store_id]
-          = button_to "Logout", logout_url, method: :get, class: "btn btn-danger"
-        - elsif !!session[:user_id] && @current_user.stores.include?(@store)
-          = button_to "Unfollow", unfollow_path(@store), method: :delete, class: "btn btn-info"
-        - else
-          = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-info"
+          -elsif session[:store_id]
+            = button_to 'Add new products', new_product_path, method: :get, class: "btn btn-orange_2 btn-lg rounded-pill text-white"
+        .col-lg-6.col-sm-12.mb-3
+          .lead.fs-5.mb-2
+            %b Province:
+            = @store.province
+          .lead.fs-5.mb-2
+            %b Zipcode:
+            = @store.zipcode
+          .lead.fs-5.mb-4
+            %b Rating :
+            = "#{@store.rating} / 5.0 "
 
+          -if session[:store_id]
+            = button_to 'Edit information', edit_store_path(@store), class: "btn btn-orange_2 btn-lg rounded-pill text-white", method: :get
+          - elsif !!session[:user_id] && @current_user.stores.include?(@store)
+            = button_to "Unfollow", unfollow_path(@store), method: :delete, class: "btn btn-orange_2 btn-lg rounded-pill text-white"
+          - elsif !!session[:user_id]
+            = button_to "Follow", follow_path(@store), method: :post, class: "btn btn-orange_2 btn-lg rounded-pill text-white"
+
+    .col-lg-4.col-sm-12.d-flex.justify-content-center
+      = image_tag @store.avatar rescue 'No profile picture'
+
+
+.container-lg.mt-3
   - if session[:user_id]
     .row
       .col-6
-        = "ITEM LIST"
+        .display-5.text-orange Products List
         - @store.show_products.each do |tag, items|
           - if items.size == 0
             - next
           .row.mb-2{id: "#{tag}Row"}
-            %h5= tag
+            .display-6.text-orange.mb-3= tag
             - items.each do |p|
               = render 'productCard_store', product: p, tag: tag
 
-      .col-6
-        %label= "SHOPPING CART"
-        %label= @cart.total
-        - if @cart.cart_items.any?
-          = button_to "Check out", orders_path(user_id: session[:user_id], store_id: session[:bought_store_id]), class: "btn btn-warning"
-        -@cart.cart_items.each do |cart_item|
-          - product = Product.find(cart_item.product_id)
-          =render 'productCard_cart', product: product, cart_item: cart_item
+      .col-6.bg-light.p-3
+        .row.mb-3
+          .col
+            .display-6.text-orange SHOPPING CART
+            .lead.fs-4.text-muted= "A total of #{@cart.total} Baht."
+          .col.d-flex.justify-content-end
+            - if @cart.cart_items.any?
+              = button_to "Check out", orders_path(user_id: session[:user_id], store_id: session[:bought_store_id]), class: "btn btn-orange btn-lg rounded-pill text-white", data: { confirm: 'Are you sure?' }
+        .row
+          -@cart.cart_items.each do |cart_item|
+            - product = Product.find(cart_item.product_id)
+            =render 'productCard_cart', product: product, cart_item: cart_item
 
   - elsif session[:store_id]
     .row
       .col-12
-        = "ITEM LIST"
+        .display-5.text-orange Products List
         - @store.show_products.each do |tag, items|
           - if items.size == 0
             - next
-          .row.mb-2{id: "#{tag}Row"}
-            %h5= tag
+          .row.mt-3{id: "#{tag}Row"}
+            .display-6.text-orange.mb-3= tag
             - items.each do |p|
               = render 'productCard_store', product: p, tag: tag
+
+
 = render 'productModal_customer'
 = render 'reviewModal'

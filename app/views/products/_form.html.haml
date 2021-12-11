@@ -3,16 +3,29 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs.d-grid.gap-2
-    = f.input :name
-    = f.input :price, input_html: { min: '0', max: '999999', step: '0.5' }
-    = f.input :quantity, input_html: { min: '0', max: '9999', step: '1' }
-    = f.input :description
-    = f.input :tag_list, label: 'Tags (seperated by ",")'
-    = f.input :picture
+  .form-inputs.d-grid.gap-2.mt-3
 
-  .form-actions.mt-3
-    = f.button :submit, class: "btn btn-success"
+    .form-label.lead Product name
+    = f.input :name, label: false, class: 'form-control'
+    .row.mt-2
+      .col-lg-6.col-md-12
+        .form-label.lead Price
+        = f.input :price, input_html: { min: '0', max: '999999', step: '0.5' }, label: false, class: 'form-control'
+      .col-lg-6.col-md-12
+        .form-label.lead Quantity
+        = f.input :quantity, input_html: { min: '0', max: '9999', step: '1' }, label: false, class: 'form-control'
+    .row.mt-2
+      .form-label.lead Description
+      = f.input :description, label: false, class: 'form-control'
+    .row.mt-2
+      .form-label.lead Tags (seperated by ",")
+      = f.input :tag_list, label: false, class: 'form-control'
+    .row.mt-2
+      .form-label.lead.mb-3 Product picture
+      = f.input :picture, label: false, class: 'form-control'
+
+  .form-actions.mt-4
+    = f.button :submit, class: "btn btn-outline-orange_2 btn-lg rounded-pill me-3"
     - if @product.id
-      = link_to 'Delete this product', product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
-    = link_to "Cancel", store_path(session[:store_id]), class: "btn btn-secondary", role: "button", "aria-disabled": "true", style: "color: white;"
+      = link_to 'Delete this product', product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-orange_2 btn-lg rounded-pill me-3"
+    = link_to "Cancel", store_path(session[:store_id]), class: "btn btn-outline-secondary btn-lg rounded-pill", role: "button", "aria-disabled": "true"

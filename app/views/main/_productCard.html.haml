@@ -12,7 +12,6 @@
 					.card-subtitle.mb-2.lead.fs-6.text-muted= p.name
 					%p.card-text
 					.card-text.lead.fs-5= "#{p.price} Baht."
-					/ .card-text= p.description
 					%small.text-muted= p.created_at
 		.productDetails.btn.btn-orange_2{"data-bs-target": ".productModal", "data-bs-toggle": "modal", type: "button", "data-p-id": p.id, "data-p-name": p.name, "data-p-store-name": p.store.username, "data-p-store-id": p.store.id, "data-p-desc": p.description, 'data-p-quan': p.quantity } 
 			.lead.text-white Details

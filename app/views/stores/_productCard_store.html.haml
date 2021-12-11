@@ -3,21 +3,20 @@
 	.card
 		.row.g-0
 			.col-5
-				.card-img-fluid.rounded-start= image_tag p.thumb rescue 'No images to display !!'
+				.card-img-fluid.rounded-start.text-center
+					= image_tag p.thumb rescue 'No images to display !!'
 			.col-7
 				.card-body
-					%h5.card-title= p.store.username
-					%h6.card-subtitle.mb-2.text-muted= p.name
-					%p.card-text
-					.card-text= "#{p.price} Baht."
-					/ .card-text= p.description
+					.card-title.lead.fs-3= p.store.username
+					.card-subtitle.lead.fs-6.mb-2.text-muted= p.name
+					.card-text.lead.fs-5= "#{p.price} Baht."
 					%small.text-muted= p.created_at
 
 		- if session[:store_id]
-			= link_to "Edit information", edit_product_path(p), class: "btn btn-outline-primary active", role: "button", "aria-disabled": "true" 
+			= link_to "Edit information", edit_product_path(p), class: "btn btn-orange text-white active", role: "button", "aria-disabled": "true" 
 		- elsif p.quantity == 0
 			= link_to "Out of stock", '', class: "btn btn-secondary", role: "button", "aria-disabled": "true", readonly: true
 		- else
-			.productDetails.btn.btn-primary{"data-bs-target": ".productModal", "data-bs-toggle": "modal", type: "button", "data-p-id": p.id, "data-p-name": p.name, "data-p-store-name": p.store.username, "data-p-store-id": p.store.id, "data-p-quan": p.quantity, "data-p-desc": p.description } Buy this product
+			.productDetails.btn.btn-orange_2.text-white{"data-bs-target": ".productModal", "data-bs-toggle": "modal", type: "button", "data-p-id": p.id, "data-p-name": p.name, "data-p-store-name": p.store.username, "data-p-store-id": p.store.id, "data-p-quan": p.quantity, "data-p-desc": p.description } Buy this product
 
 

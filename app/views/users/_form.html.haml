@@ -48,6 +48,6 @@
     = f.input :birthdate, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:day, :month, :year], label: false, class: 'form-control'
 
   .form-actions.mt-4
-    = f.button :submit, class: "btn btn-outline-orange_2 me-2"
-    = link_to "Cancel", index_url, class: "btn btn-outline-secondary", role: "button", "aria-disabled": "true"
+    = f.button :submit, class: "btn btn-outline-orange_2 btn-lg rounded-pill me-2"
+    = link_to "Cancel", index_url, class: "btn btn-outline-secondary btn-lg rounded-pill", role: "button", "aria-disabled": "true"
 

@@ -1,5 +1,6 @@
 class Store < ApplicationRecord
 	has_secure_password
+	has_one_attached :picture
 	has_many :products, dependent: :destroy
 	has_many :follows
 	has_many :users, through: :follows
@@ -27,5 +28,12 @@ class Store < ApplicationRecord
 	def set_rating
 		self.rating = self.reviews.average(:score).to_f.round(1)
 		self.save
+	end
+
+	def avatar
+		if !self.picture.attached?
+			return
+		end
+		return self.picture.variant(resize: '200x200').processed
 	end
 end
