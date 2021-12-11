@@ -8,11 +8,9 @@
 						.col-1
 							%button.btn-close{"data-bs-dismiss": "modal", "aria-label": "Close"}
 					.row
-						%h6.text-muted#modal_item_name
+						.lead.fs-6.text-muted#modal_item_name
 			.modal-body
-				/ .mx-auto= image_tag p.banner rescue "none"
-				/ .mx-auto#modal_itempicture
-				%p.text-break#modal_item_desc
+				.font-monospace.fw-normal#modal_item_desc
 			.modal-footer
 				.container
 					.row#modal_store_link

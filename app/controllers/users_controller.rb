@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+  include MainConcern
+
+  before_action :set_current_user
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_cart, only: %i[ show edit ]
 
   # GET /users or /users.json
   def index
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to @user, notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -1,42 +1,51 @@
-%p#notice= notice
+= render 'main/inappNav'
 
-%p
-  %b Username:
-  = @user.username
-%p
-  %b Password digest:
-  = @user.password_digest
-%p
-  %b Email:
-  = @user.email
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Address:
-  = @user.address
-%p
-  %b Subdistrict:
-  = @user.subDistrict
-%p
-  %b District:
-  = @user.district
-%p
-  %b Province:
-  = @user.province
-%p
-  %b Zipcode:
-  = @user.zipcode
-%p
-  %b Phonenumber:
-  = @user.phoneNumber
-%p
-  %b Gender:
-  = @user.gender
-%p
-  %b Birthdate:
-  = @user.birthdate
+.container-lg.mt-4
+  = render 'main/alert'
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+.container-lg.bg-light.p-3
+  
+  .row
+    .col
+      .lead.fs-5.mb-4
+        %b Name:
+        = @user.name
+    .col
+      .d-flex.justify-content-end
+        = link_to 'Edit', edit_user_path(@user), class: 'btn btn-orange_2 btn-lg text-white rounded-pill'
+
+  .lead.fs-5.mb-4
+    %b Gender:
+    = @user.gender
+
+  .lead.fs-5.mb-4
+    %b Email:
+    = @user.email
+
+  .lead.fs-5.mb-4
+    %b Birthdate:
+    = @user.birthdate
+
+  .lead.fs-5.mb-4
+    %b Address:
+    = @user.address
+
+  .lead.fs-5.mb-4
+    %b Subdistrict:
+    = @user.subDistrict
+
+  .lead.fs-5.mb-4
+    %b District:
+    = @user.district
+
+  .lead.fs-5.mb-4
+    %b Province:
+    = @user.province
+
+  .lead.fs-5.mb-4
+    %b Zipcode:
+    = @user.zipcode
+
+  .lead.fs-5.mb-4
+    %b Phonenumber:
+    = @user.phoneNumber

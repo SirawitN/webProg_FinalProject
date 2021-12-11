@@ -8,14 +8,14 @@ $(document).on('turbolinks:load', function() {
     const descp = $(this).attr("data-p-desc")
 
     $("#modal_store_name").empty();
-    $("#modal_store_name").append(`<h5>${store_name}</h5>`);
+    $("#modal_store_name").append(`<p class='lead fs-3'>${store_name}<p>`);
 
     $("#modal_item_name").text(`${name}  (stock : ${stock})`);
 
     $("#modal_item_desc").text(`${descp}`);
 
     $("#modal_store_link").empty();
-    $("#modal_store_link").append(`<a class="btn btn-primary" href="/stores/${store_id}">SHOP</a>`);
+    $("#modal_store_link").append(`<a class="btn btn-orange_2" href="/stores/${store_id}" style='color: white;'>SHOP</a>`);
 
     $('#cart_item_product_id').attr('value', `${id}`)
     $('#cart_item_quantity').attr('max', `${stock}`)

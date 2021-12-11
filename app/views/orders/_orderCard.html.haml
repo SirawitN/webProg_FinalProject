@@ -1,10 +1,12 @@
 .card.mb-3
-  .card-header
-    = "Order ##{idx}"
+  .card-header.bg-slightly_orange
+    %a.text-decoration-none.text-black{href: order_path(order, idx: idx)}
+      .row
+        .col  
+          .display-6= "Order ##{idx}"
+        .col.d-flex.justify-content-end.aligh
+          %i.bi.bi-info-circle{style: 'color: black; font-size: 2rem;'}
   .card-body
-    %blockquote.blockquote.mb-0
-      %p= "Purchased date : #{order.created_at}"
-      %p= "Total amount : #{order.total}"
-      %footer.blockquote-footer
-        = link_to 'Details', order_path(order, idx: idx), style: "text-decoration: none;"
-          
+    %blockquote.blockquote
+      .lead.fs-5.mb-2= "Purchased date : #{order.created_at}"
+      .lead.fs-5= !order.total ?  "Total amount : 0 Baht." : "Total amount : #{order.total} Baht."

@@ -18,10 +18,7 @@
 
 .container.lg
 
-	- flash.each do |type, msg|
-		%div.alert.alert-dismissible.fade.show{class: type=='alert' ? 'alert-danger' : 'alert-info' }
-			%p.lead.align-middle.fw-light "#{msg}"
-			%button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+	= render 'alert'
 
 	%div.mt-4
 	

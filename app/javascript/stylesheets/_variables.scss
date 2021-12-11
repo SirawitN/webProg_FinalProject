@@ -10,6 +10,7 @@ $dark: #212529;
 //custom
 $orange: #FA5330;
 $orange_2: #EE6A5C;
+$slightly_orange: #FCD8D0;
 
 // Then add them to your custom theme-colors map, together with any additional colors you might need
 $theme-colors: (
@@ -23,6 +24,7 @@ $theme-colors: (
   dark: $dark,
 
   orange: $orange,
-  orange_2: $orange_2
+  orange_2: $orange_2,
+  slightly_orange: $slightly_orange
   // add any additional color below
 );

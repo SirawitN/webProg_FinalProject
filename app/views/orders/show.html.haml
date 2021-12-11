@@ -1,14 +1,15 @@
-%p#notice= notice
+= render 'main/inappNav'
+
+.container-lg.mt-4
 
 
-%h1= "Order ##{@idx}"
+  #top.display-6.text-orange.mb-4= "Order ##{@idx}"
 
-%h3= "Products"
-
-- @order.order_items.each do |order_item|
-  - product = Product.find(order_item.product_id) rescue nil
-  - if product
-    = render 'productCard_order', product: product, unit_sold_price: order_item.unit_sold_price, quantity: order_item.quantity
+  - @order.order_items.each do |order_item|
+    - product = Product.find(order_item.product_id) rescue nil
+    - if product
+      = render 'productCard_order', product: product, unit_sold_price: order_item.unit_sold_price, quantity: order_item.quantity
 
 
-= link_to 'Back', orders_path, class: "btn btn-primary"
+  .d-flex.justify-content-end
+    = link_to 'Back to top', '#top', class: "btn btn-orange_2 btn-lg rounded-pill", style: 'color: white;'

@@ -1,7 +1,8 @@
-%h1 My orders
+= render 'main/inappNav'
 
-- idx = 1
-- @orders.each do |order|
-    = render 'orderCard', order: order, idx: idx
-    - idx += 1
-    
+.container-lg.mt-4
+    - idx = 1
+    - @orders.each do |order|
+        = render 'orderCard', order: order, idx: idx
+        - idx += 1
+

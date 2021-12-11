@@ -1,0 +1,36 @@
+.navbar.navbar-expand-md.navbar-light.mx-5
+	.container-fluid
+		%a.navbar-brand{href: index_url}
+			.display-4.fw-bold.text-orange= 'Shopee'
+		%button.navbar-toggler{type: 'button', 'data-bs-toggle': 'collapse', 'data-bs-target': '#navbarNav', 'aria-controls': "navbarNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation"}
+			%span.navbar-toggler-icon
+
+		#navbarNav.collapse.navbar-collapse.justify-content-end.align-center
+			%ul.navbar-nav
+				%li.nav-item.align-center.d-none.d-md-inline.me-4
+					%a.nav_link{href: user_path(@current_user), class: 'btn btn-orange_2 btn-lg rounded-pill', style: 'color: white;'} 
+						%i.bi.bi-person-circle
+						.d-inline.ms-2 My profile
+				%li.nav-item.d-md-none.mt-2
+					= link_to 'Profile', user_path(@current_user), style: 'text-decoration: none; color: grey;'
+
+				%li.nav-item.align-center.d-none.d-md-inline.me-4
+					%a.nav_link{href: orders_path, class: 'btn btn-orange_2 btn-lg rounded-pill', style: 'color: white;'} 
+						%i.bi.bi-card-list
+						.d-inline.ms-2 My orders
+				%li.nav-item.d-md-none.mt-2
+					= link_to 'My orders', orders_path, style: 'text-decoration: none; color: grey;'
+
+				%li.nav-item.align-center.d-none.d-md-inline.me-4
+					%a.nav_link{href: @cart.cart_items.any? ? store_path(session[:bought_store_id]) : '#', class: 'btn btn-orange_2 btn-lg rounded-pill', style: 'color: white;'}
+						%i.bi.bi-cart3
+						.d-inline.ms-2 Shopping cart
+				%li.nav-item.d-md-none.mt-2
+					= link_to 'Shopping cart', @cart.cart_items.any? ? store_path(session[:bought_store_id]) : '#', style: 'text-decoration: none; color: grey;'
+
+				%li.nav-item.align-center.d-none.d-md-inline
+					%a.nav_link{href: logout_url, class: 'btn btn-orange_2 btn-lg rounded-pill', style: 'color: white;'} 
+						%i.bi.bi-box-arrow-left
+						.d-inline.ms-2 Logout
+				%li.nav-item.d-md-none.mt-2
+					= link_to 'Logout', logout_url, style: 'text-decoration: none; color: grey;'
