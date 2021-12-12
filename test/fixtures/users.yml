@@ -1,29 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: MyString
-  password_digest: MyString
-  email: MyString
-  name: MyString
-  address: MyString
-  subDistrict: MyString
-  district: MyString
-  province: MyString
-  zipcode: MyString
-  phoneNumber: MyString
-  gender: MyString
+  username: MyString1
+  password_digest: <%= BCrypt::Password.create('MyString1') %>
+  email: MyString1
+  name: MyString1
+  address: MyString1
+  subDistrict: MyString1
+  district: MyString1
+  province: MyString1
+  zipcode: MyString1
+  phoneNumber: MyString1
+  gender: MyString1
   birthdate: 2021-12-05
 
 two:
-  username: MyString
-  password_digest: MyString
-  email: MyString
-  name: MyString
-  address: MyString
-  subDistrict: MyString
-  district: MyString
-  province: MyString
-  zipcode: MyString
-  phoneNumber: MyString
-  gender: MyString
+  username: MyString2
+  password_digest: <%= BCrypt::Password.create('MyString2') %>
+  email: MyString2
+  name: MyString2
+  address: MyString2
+  subDistrict: MyString2
+  district: MyString2
+  province: MyString2
+  zipcode: MyString2
+  phoneNumber: MyString2
+  gender: MyString2
   birthdate: 2021-12-05

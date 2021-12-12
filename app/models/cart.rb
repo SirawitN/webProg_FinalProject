@@ -15,6 +15,12 @@ class Cart < ApplicationRecord
     return current_item
   end
 
+  def get_store_id
+    if self.cart_items.any?
+      return Product.where(id: self.cart_items.first.product_id).pluck(:store_id).first
+    end
+  end
+
   def total
       return cart_items.collect{|cart_item| cart_item.subtotal}.sum
   end

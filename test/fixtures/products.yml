@@ -5,9 +5,19 @@ one:
   price: 1.5
   description: MyText
   store: one
+  quantity: 5
 
 two:
-  name: MyString
+  name: MyString2
   price: 1.5
   description: MyText
   store: two
+  quantity: 2
+
+
+three:
+  name: MyString3
+  price: 1.5
+  description: MyText3
+  store: one
+  quantity: 10

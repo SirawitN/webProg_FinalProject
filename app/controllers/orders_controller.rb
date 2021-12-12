@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include MainConcern
 
-  before_action :is_logged_in_user, only: %i[ new create ]
+  before_action :is_logged_in_user, only: %i[ new create index ]
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_current_user
   before_action :set_cart
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     if @cart.cart_items.any? && @cart.save
-      @order = Order.create(user_id: params[:user_id], store_id: params[:store_id])
+      @order = Order.create!(user_id: params[:user_id], store_id: params[:store_id])
       @order[:total] = @cart.total
 
       @cart.cart_items.each do |cart_item|
@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
         product.set_quant(-1*cart_item[:quantity].to_i)
         product.save
       end
+
       respond_to do |format|
         if @order.save
           @cart.cart_items.destroy_all 

@@ -1,0 +1,16 @@
+
+
+one:
+  tag: one
+  taggable: one (Product)
+  context: tags
+
+two:
+  tag: two
+  taggable: two (Product)
+  context: tags
+
+three:
+  tag: one
+  taggable: three (Product)
+  context: tags

@@ -1,6 +1,7 @@
 class MainController < ApplicationController
 	include MainConcern
 
+	before_action :is_logged_in_user, only: %i[ feed ]
 	before_action :set_user, only: %i[ feed ]
 	before_action :set_current_user
 	before_action :set_cart, only: %i[ feed ]
@@ -28,6 +29,7 @@ class MainController < ApplicationController
 	    session[:user_id] = nil
 	    session[:store_id] = nil
 	    session[:cart_id] = nil
+	    session[:bought_store_id] = nil
 	    redirect_to index_path
   	end
 
@@ -62,7 +64,7 @@ class MainController < ApplicationController
 	            session[:store_id] = @store.id
 	        else 
 	            puts "Not found"
-	            flash.alert = "Log in failed, wrong email or password !!"
+	            flash.alert = "Log in failed, wrong username or password !!"
 	            format.html { redirect_to index_path}    
 	        end
 	    end
@@ -80,6 +82,7 @@ class MainController < ApplicationController
 			products.push(Product.tagged_with(t))
 			@products["#{t.name}"] = products.flatten.to_set
 		end
+		session[:bought_store_id] = @cart.get_store_id rescue nil
 	end
 
 

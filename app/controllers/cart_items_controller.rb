@@ -28,7 +28,7 @@ class CartItemsController < ApplicationController
     id = params[:cart_item][:product_id]
     quant = params[:cart_item][:quantity].to_i
     product = Product.find(id)
-    if check_store(product) && quant <= product.quantity.to_i
+    if check_store(product) && quant > 0 && quant <= product.quantity.to_i
       @cart_item = @cart.add_product(product, quant)
       respond_to do |format|
         if @cart_item.save
@@ -40,7 +40,7 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      redirect_to store_path(session[:bought_store_id]), alert: quant > product.quantity ? "The product in our stock is not enough for your order, please try again." : "Please clear the cart before purchasing products from other stores."
+      redirect_to store_path(@cart.get_store_id), alert: (quant > product.quantity || quant <= 0) ? "Invalid product's quantity, please try again." : "Please clear the cart before purchasing products from other stores."
     end
   end
 
@@ -78,7 +78,7 @@ class CartItemsController < ApplicationController
     end
 
     def check_store(product)
-      if !session[:bought_store_id] || !@cart.cart_items.any? || session[:bought_store_id] == product.store_id
+      if @cart.cart_items.any? && @cart.get_store_id == product.store_id || !@cart.cart_items.any?
         session[:bought_store_id] = product.store_id
         return true
       end

@@ -2,24 +2,22 @@
 
 one:
   username: MyString
-  password: MyString
+  password_digest: <%= BCrypt::Password.create('MyString') %>
   email: MyString
   address: MyString
   subDistrict: MyString
   district: MyString
   province: MyString
   zipcode: MyString
-  totalRatingScore: 1
-  rateCount: 1
+  rating: 1
 
 two:
-  username: MyString
-  password: MyString
+  username: MyString2
+  password_digest: <%= BCrypt::Password.create('MyString') %>
   email: MyString
   address: MyString
   subDistrict: MyString
   district: MyString
   province: MyString
   zipcode: MyString
-  totalRatingScore: 1
-  rateCount: 1
+  rating: 1

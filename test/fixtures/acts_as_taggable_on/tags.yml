@@ -1,0 +1,7 @@
+one: 
+  name: tagone
+  taggings_count: 2
+
+two: 
+  name: tagtwo
+  taggings_count: 1
