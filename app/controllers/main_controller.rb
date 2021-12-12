@@ -7,7 +7,7 @@ class MainController < ApplicationController
 	before_action :set_cart, only: %i[ feed ]
 
 	def logIn
-		puts "user_id = #{session[:user_id]}, store_id = #{session[:store_id]}"
+		# puts "user_id = #{session[:user_id]}, store_id = #{session[:store_id]}"
 		if session[:user_id]
       		redirect_to feed_path(session[:user_id])
     	elsif session[:store_id]
@@ -38,15 +38,15 @@ class MainController < ApplicationController
 	end
 
 	def findCust
-		puts "username, pass = #{params["user"]["username"]}, #{params["user"]["password"]}"
+		# puts "username, pass = #{params["user"]["username"]}, #{params["user"]["password"]}"
 		@user = User.find_by(username: params["user"]["username"]).authenticate(params["user"]["password"]) rescue nil
 	    respond_to do |format|
 	      	if @user
-	            puts "Found"
+	            # puts "Found"
 	            format.html {redirect_to feed_path(@user)}
 	            session[:user_id] = @user.id
 	        else 
-	            puts "Not found"
+	            # puts "Not found"
 	            flash.alert = "Log in failed, wrong username or password !!"
 	            format.html { redirect_to index_path}    
 	        end
@@ -55,15 +55,15 @@ class MainController < ApplicationController
 
 
 	def findStore
-		puts "username, pass = #{params["store"]["username"]}, #{params["store"]["password"]}"
+		# puts "username, pass = #{params["store"]["username"]}, #{params["store"]["password"]}"
 		@store = Store.find_by(username: params["store"]["username"]).authenticate(params["store"]["password"]) rescue nil
 	    respond_to do |format|
 	      	if @store
-	            puts "Found"
+	            # puts "Found"
 	            format.html { redirect_to store_path(@store) }
 	            session[:store_id] = @store.id
 	        else 
-	            puts "Not found"
+	            # puts "Not found"
 	            flash.alert = "Log in failed, wrong username or password !!"
 	            format.html { redirect_to index_path}    
 	        end

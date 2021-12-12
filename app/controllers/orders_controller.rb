@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include MainConcern
 
-  before_action :is_logged_in_user, only: %i[ new create index ]
+  before_action :is_logged_in_user, only: %i[ new create index show ]
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_current_user
   before_action :set_cart

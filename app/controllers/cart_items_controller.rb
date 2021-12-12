@@ -40,7 +40,8 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      redirect_to store_path(@cart.get_store_id), alert: (quant > product.quantity || quant <= 0) ? "Invalid product's quantity, please try again." : "Please clear the cart before purchasing products from other stores."
+      store_id = @cart.get_store_id
+      redirect_to store_path(store_id ? store_id : product.store_id), alert: (quant > product.quantity || quant <= 0) ? "Invalid product's quantity, please try again." : "Please clear the cart before purchasing products from other stores."
     end
   end
 

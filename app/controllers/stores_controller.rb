@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   include MainConcern
 
-  before_action :is_logged_in_store, except: %i[ show new create ]
+  before_action :is_logged_in_store, except: %i[ show new create edit update ]
   before_action :set_store, only: %i[ show edit update destroy ]
   before_action :set_current_user
   before_action :set_cart, only: %i[ show ]
