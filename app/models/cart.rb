@@ -8,7 +8,9 @@ class Cart < ApplicationRecord
     current_item = cart_items.find_by(product_id: product.id)
 
     if current_item
-        current_item[:quantity] += quantity.to_i
+      add_quant = quantity.to_i
+      current_quant = current_item[:quantity]
+      current_item[:quantity] = (current_quant+add_quant > product.quantity) ? product.quantity : current_quant + add_quant
     else
         current_item = cart_items.build(product_id: product.id, quantity: quantity.to_i)
     end
