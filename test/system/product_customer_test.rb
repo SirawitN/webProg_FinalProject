@@ -118,6 +118,6 @@ class MainTest < ApplicationSystemTestCase
 	# 	click_on 'Review'
 	# 	assert_text 'Please purchase some products from the store before making reviews.'
 	# end
-	# problems with turbolinks
+	# problems with turbolinks, can't find the element 
 
 end
