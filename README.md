@@ -1,24 +1,22 @@
-# README
+# MicroShopee
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## A term project website for **Web Development by Ruby on Rails (2110497) Academic year 2021**
 
-Things you may want to cover:
+<br>
 
-* Ruby version
+### Getting started
 
-* System dependencies
+- install Ruby
+- install MySQL
+- install Node.js
+- install Yarn
+- `gem install rails` to install Rails
+- `bundle install` to install all gem files
+- `rails s` to start the server
+  <br>
 
-* Configuration
+### Previews
 
-* Database creation
+#### Homepage
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<img src="https://github.com/SirawitN/webProg_FinalProject/blob/main/Screenshot/Homepage_1.png" width=300>
